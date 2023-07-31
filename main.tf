@@ -13,10 +13,10 @@ resource "random_pet" "always_new" {
 }
 
 resource "random_pet" "tg" {
-  count = 2
+  count = 25
 
   separator = "-"
-  length    = 1
+  length    = 2
 
   keepers = {
     count = count.index
