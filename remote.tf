@@ -7,8 +7,8 @@ terraform {
 
     workspaces {
       # prefix = "app-"
-      # name = "wk1"
-      tags = ["helloworld"]
+      name = "wk1"
+      # tags = ["helloworld"]
     }
   }
 }

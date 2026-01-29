@@ -23,6 +23,10 @@ resource "random_pet" "tg" {
   }
 }
 
+resource "random_pet" "goodboi" {
+  length = 3
+}
+
 # VARIABLES
 variable "animal_count" {
   type = number
@@ -48,7 +52,6 @@ output "username" {
   value = "Username is ${var.username}. Extra text???"
 }
 
-
 output "val" {
   value       = terraform.workspace
   description = "The workspace"
@@ -69,3 +72,22 @@ output "mapppp" {
     "num" = 1,
   })
 }
+
+output "goodboi" {
+  value = random_pet.goodboi.id
+}
+
+# IPL-7713
+resource "null_resource" "previous" {}
+
+resource "time_sleep" "wait_30_seconds" {
+  depends_on = [null_resource.previous]
+
+  create_duration = "30s"
+}
+
+# This resource will create (at least) 30 seconds after null_resource.previous
+resource "null_resource" "next" {
+  depends_on = [time_sleep.wait_30_seconds]
+}
+
